@@ -20,21 +20,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0x2353
+#define VENDOR_ID       0x9000
 #define PRODUCT_ID      0x0002
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    StenoKeyboards
-#define PRODUCT         Tuni
+#define PRODUCT         Twoni
 
 /* key matrix size */
 //rows are doubled
 #define MATRIX_ROWS 8
-#define MATRIX_COLS 7
+#define MATRIX_COLS 6
 
 /* key matrix pins */
 #define MATRIX_ROW_PINS { D7, E6, B4, B5 }
-#define MATRIX_COL_PINS { F5, F6, F7, B1, B3, B2, B6 }
+#define MATRIX_COL_PINS { F5, F6, F7, B1, B3, B2 }
+#define MATRIX_ROW_PINS_RIGHT { D7, E6, B4, B5 }
+#define MATRIX_COL_PINS_RIGHT { F5, F6, F7, B1, B3, B2 }
 #define UNUSED_PINS
+
+/* usb handedness */
+#define SPLIT_USB_DETECT
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
@@ -55,12 +60,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define LOCKING_RESYNC_ENABLE
 
 // /* key combination for command */
-// #define IS_COMMAND() ( \
-//     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
-// )
+#define IS_COMMAND() ( \
+    keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
+)
 
-// /* prevent stuck modifiers */
-// #define PREVENT_STUCK_MODIFIERS
+/* prevent stuck modifiers */
+#define PREVENT_STUCK_MODIFIERS
 
 
 // #ifdef RGB_DI_PIN
@@ -73,6 +78,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // #endif
 
-#define USE_SERIAL
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
+/* define serial pin */
+#define SOFT_SERIAL_PIN D2
