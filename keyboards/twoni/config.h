@@ -80,3 +80,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* define serial pin */
 #define SOFT_SERIAL_PIN D2
+
+#define FORCE_NKRO
