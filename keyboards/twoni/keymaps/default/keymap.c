@@ -197,6 +197,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         layer_clear();
         set_single_persistent_default_layer(_GEMINI);
       }
+      return false;
     case UNI_PLOVER:
       if (record->event.pressed) {
         layer_clear();
