@@ -40,6 +40,7 @@ enum twoni_keycodes {
  ,PLOVER
  ,UNI_GEMINI
  ,UNI_PLOVER
+ ,BACK
 };
 
 #define RAISE MO(_RAISE)
@@ -112,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_PLOVER] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      QWERTY,     KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
+      BACK,     KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -125,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_GEMINI] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      QWERTY,  STN_N1,  STN_N2,  STN_N3,  STN_N4,  STN_N5,  					            STN_N6,  STN_N7,  STN_N8,  STN_N9,  STN_NA,  STN_NB,
+      BACK,  STN_N1,  STN_N2,  STN_N3,  STN_N4,  STN_N5,  					            STN_N6,  STN_N7,  STN_N8,  STN_N9,  STN_NA,  STN_NB,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, STN_S1,  STN_TL,  STN_PL,  STN_HL,  STN_ST1, 					             STN_ST3, STN_FR,  STN_PR,  STN_LR,  STN_TR,  STN_DR,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -142,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       QWERTY,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
+       BACK,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                              KC_C,    KC_V,    KC_1,       KC_2,    KC_N,    KC_M
                                       //`--------------------------'  `--------------------------'
@@ -155,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, STN_S2,  STN_KL,  STN_WL,  STN_RL,  STN_ST2, 					           STN_ST4,  STN_RR,  STN_BR,  STN_GR,  STN_SR,  STN_ZR,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       QWERTY,  STN_N1,  STN_N2,  STN_N3,  STN_N4,  STN_N5,    					          STN_N6,  STN_N7,  STN_N8,  STN_N9,  STN_NA,  STN_NB,
+       BACK,  STN_N1,  STN_N2,  STN_N3,  STN_N4,  STN_N5,    					          STN_N6,  STN_N7,  STN_N8,  STN_N9,  STN_NA,  STN_NB,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             STN_A,   STN_O,  STN_N1,     STN_N2,   STN_E,   STN_U
                                       //`--------------------------'  `--------------------------'
@@ -170,44 +171,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        layer_clear();
 		    set_single_persistent_default_layer(_QWERTY);
       }
       return false;
     case DVORAK:
       if (record->event.pressed) {
-        layer_clear();
 		    set_single_persistent_default_layer(_DVORAK);
       }
       return false;
     case COLEMAK:
       if (record->event.pressed) {
-        layer_clear();
 		    set_single_persistent_default_layer(_COLEMAK);
       }
       return false;
     case PLOVER:
       if (record->event.pressed) {
-        layer_clear();
-		    set_single_persistent_default_layer(_PLOVER);
+		    layer_on(_PLOVER);
       }
       return false;
     case GEMINI:
       if (record->event.pressed) {
-        layer_clear();
-        set_single_persistent_default_layer(_GEMINI);
+        layer_on(_GEMINI);
       }
       return false;
     case UNI_PLOVER:
       if (record->event.pressed) {
-        layer_clear();
-		    set_single_persistent_default_layer(_UNI_PLOVER);
+		    layer_on(_UNI_PLOVER);
       }
       return false;
     case UNI_GEMINI:
       if (record->event.pressed) {
-        layer_clear();
-        set_single_persistent_default_layer(_UNI_GEMINI);
+        layer_on(_UNI_GEMINI);
+      }
+      return false;
+    case BACK:
+      if (record->event.pressed) {
+        layer_off(_PLOVER);
+        layer_off(_GEMINI);
+        layer_off(_UNI_GEMINI);
+        layer_off(_UNI_PLOVER);
       }
       return false;
   }
