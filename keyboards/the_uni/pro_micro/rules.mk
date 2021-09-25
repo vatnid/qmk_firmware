@@ -8,7 +8,7 @@ BOOTLOADER = atmel-dfu
 # Build Options
 #   comment out to disable the options.
 #
-BOOTMAGIC_ENABLE = lite     # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
 CONSOLE_ENABLE = no	# Console for debug
 COMMAND_ENABLE = no    # Commands for debug and configuration
 SLEEP_LED_ENABLE = no  # Breathing sleep LED during USB suspend
@@ -18,4 +18,4 @@ RGBLIGHT_ENABLE = no
 FORCE_NKRO = yes
 EXTRAKEY_ENABLE = no
 MOUSEKEY_ENABLE = no        # Mouse keys
-STENO_ENABLE = yes      
+STENO_ENABLE = yes
