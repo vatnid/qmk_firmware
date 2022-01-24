@@ -28,6 +28,6 @@ RGBLIGHT_ENABLE ?= no
 SPLIT_KEYBOARD ?= yes
 
 FORCE_NKRO ?= yes
-EXTRAKEY_ENABLE ?= no
+EXTRAKEY_ENABLE ?= yes
 MOUSEKEY_ENABLE ?= no        # Mouse keys
-STENO_ENABLE ?= yes      
+STENO_ENABLE ?= yes
