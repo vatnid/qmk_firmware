@@ -19,26 +19,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keymap_steno.h"
 
 enum twoni_layers {
-  _QWERTY = 0
+ _UNI_GEMINI = 0
+ ,_QWERTY
  ,_DVORAK
  ,_COLEMAK
  ,_RAISE
  ,_LOWER
  ,_GEMINI
  ,_PLOVER
- ,_UNI_GEMINI
  ,_UNI_PLOVER
 };
 
 enum twoni_keycodes {
-  QWERTY = SAFE_RANGE
+  UNI_GEMINI = SAFE_RANGE
+ ,QWERTY
  ,DVORAK
  ,COLEMAK
  ,RAISE
  ,LOWER
  ,GEMINI
  ,PLOVER
- ,UNI_GEMINI
  ,UNI_PLOVER
  ,BACK
 };
@@ -47,6 +47,19 @@ enum twoni_keycodes {
 #define LOWER MO(_LOWER)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+  [_UNI_GEMINI] = LAYOUT(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, STN_S1,  STN_TL,  STN_PL,  STN_HL,  STN_ST1, 					             STN_ST3, STN_FR,  STN_PR,  STN_LR,  STN_TR,  STN_DR,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX, STN_S2,  STN_KL,  STN_WL,  STN_RL,  STN_ST2, 					           STN_ST4,  STN_RR,  STN_BR,  STN_GR,  STN_SR,  STN_ZR,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+       BACK,  KC_LCTL,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_SPC,    					       KC_VOLD,  KC_LEFT, KC_UP, KC_DOWN ,KC_RIGHT,  KC_VOLU,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                            STN_A,   STN_O,  STN_N1,     STN_N2,   STN_E,   STN_U
+                                      //`--------------------------'  `--------------------------'
+
+  ),
 
   [_QWERTY] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -150,20 +163,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   ),
 
-  [_UNI_GEMINI] = LAYOUT(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, STN_S1,  STN_TL,  STN_PL,  STN_HL,  STN_ST1, 					             STN_ST3, STN_FR,  STN_PR,  STN_LR,  STN_TR,  STN_DR,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, STN_S2,  STN_KL,  STN_WL,  STN_RL,  STN_ST2, 					           STN_ST4,  STN_RR,  STN_BR,  STN_GR,  STN_SR,  STN_ZR,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       BACK,  KC_LCTL,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_SPC,    					          KC_VOLD,  KC_LEFT, KC_DOWN,  KC_UP,KC_RIGHT,  KC_VOLU,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            STN_A,   STN_O,  STN_N1,     STN_N2,   STN_E,   STN_U
-                                      //`--------------------------'  `--------------------------'
-
-  ),
-
-
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -171,37 +170,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-		    set_single_persistent_default_layer(_QWERTY);
+		layer_move(_QWERTY);
       }
       return false;
     case DVORAK:
       if (record->event.pressed) {
-		    set_single_persistent_default_layer(_DVORAK);
+		layer_move(_DVORAK);
       }
       return false;
     case COLEMAK:
       if (record->event.pressed) {
-		    set_single_persistent_default_layer(_COLEMAK);
+		layer_move(_COLEMAK);
       }
       return false;
     case PLOVER:
       if (record->event.pressed) {
-		    layer_on(_PLOVER);
+		layer_move(_PLOVER);
       }
       return false;
     case GEMINI:
       if (record->event.pressed) {
-        layer_on(_GEMINI);
+        layer_move(_GEMINI);
       }
       return false;
     case UNI_PLOVER:
       if (record->event.pressed) {
-		    layer_on(_UNI_PLOVER);
+		layer_move(_UNI_PLOVER);
       }
       return false;
     case UNI_GEMINI:
       if (record->event.pressed) {
-        layer_on(_UNI_GEMINI);
+        layer_move(_UNI_GEMINI);
       }
       return false;
     case BACK:
@@ -210,6 +209,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         layer_off(_GEMINI);
         layer_off(_UNI_GEMINI);
         layer_off(_UNI_PLOVER);
+        layer_move(_COLEMAK);
       }
       return false;
   }
