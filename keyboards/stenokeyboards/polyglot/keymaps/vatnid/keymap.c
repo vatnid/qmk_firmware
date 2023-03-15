@@ -44,6 +44,20 @@ enum polyglot_keycodes {
  ,BACK
 };
 
+
+// Tap Dance declarations
+enum {
+    TD_QUOT,
+    TD_CLN,
+};
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_QUOT] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_DQT),
+    [TD_CLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
+};
+
+
 #define STENO LSFT_T(KC_NO)
 #define QWERTY LT(_QWERTY, KC_NO)
 //#define LEFT MO(_LEFT)
@@ -59,6 +73,7 @@ enum polyglot_keycodes {
 #define POUND ROPT(KC_3)
 #define SCRSHT LCMD(S(KC_4))
 #define EMOJI LCTL(LCMD(KC_SPC))
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -79,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.            ,-----------------------------------------------------.
       KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                 KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,   KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
-      CTLESC,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                 KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN,  CTLQT,
+      CTLESC,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                 KC_H,    KC_J,    KC_K,    KC_L,  TD_CLN,  TD_QUOT,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
        STENO,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                 KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, RSFTETR,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
@@ -118,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,              XXXXXXX,  KC_F4,   KC_F5,   KC_F6,   KC_F11, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
-     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,              XXXXXXX,  KC_F7,   KC_F8,   KC_F9,   KC_F12,  KC_ENT,
+     KC_SPC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,              XXXXXXX,  KC_F7,   KC_F8,   KC_F9,   KC_F12,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
                                 XXXXXXX, XXXXXXX, _______,              _______, XXXXXXX, XXXXXXX
                              //`--------------------------'            `--------------------------'
