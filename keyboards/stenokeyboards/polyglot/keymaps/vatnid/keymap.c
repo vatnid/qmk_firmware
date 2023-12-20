@@ -61,13 +61,14 @@ enum polyglot_keycodes {
 enum {
   TD_QUOT
  ,TD_CLN
- ,TD_MINS
+ ,TD_MEDIA
 };
 
 // Tap Dance definitions
 tap_dance_action_t tap_dance_actions[] = {
   [TD_QUOT] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_DQT),
   [TD_CLN] = ACTION_TAP_DANCE_DOUBLE(KC_COLN, KC_SCLN),
+  [TD_MEDIA] = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
 };
 
 
@@ -142,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
       KC_PGDN, KC_MPLY, KC_LEFT, KC_DOWN,KC_RIGHT, KC_BRID,              KC_MINS,  KC_4,    KC_5,   KC_6,   KC_SLSH, KC_ASTR,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
-      LSFTETR, KC_MPRV, KC_HOME, SCRSHT,  KC_END,  KC_MNXT,               POUND,   KC_7,    KC_8,   KC_9,   KC_PLUS, _______,
+      LSFTETR,TD(TD_MEDIA),KC_HOME,SCRSHT, KC_END, KC_BSPC,               POUND,   KC_7,    KC_8,   KC_9,   KC_PLUS, _______,
   //|--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------|
                                  _______, _______, _______,               FUNCR,  _______, OPTEQL
                            //`----------------------------'            `--------------------------'
